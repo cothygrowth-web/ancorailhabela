@@ -189,6 +189,10 @@ html.anima .fim{z-index:5;clip-path:inset(0 100% calc(100% - 2px) 0)}
 .pv-frase .ln{display:block}
 .pv-frase .ln > span{display:block}
 .pv-frase b{font-weight:800}
+/* a frase grande vem entre aspas, no peso da palavra ao lado; a de abertura fica pendurada à esquerda, para as letras alinharem
+   com o trecho e a foto do depoimento */
+.pv-frase .ln > span{position:relative}
+.pv-frase .aspa{position:absolute;right:100%;top:0}
 .pv-cit{margin:0;display:grid;gap:14px}
 .pv-txt{margin:0}
 .pv-txt p{font-size:clamp(.95rem,.98vw,1.12rem);line-height:1.6;text-wrap:pretty}
