@@ -1,0 +1,603 @@
+/* Âncora Ilhabela · estilos do site. Cores e medidas no :root; as fontes Anxler e Kanit ficam em /fonts */
+@font-face{font-family:'Anxler';src:url('../fonts/anxler-300.woff2') format('woff2');font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:'Anxler';src:url('../fonts/anxler-800.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap}
+@font-face{font-family:'Kanit';src:url('../fonts/kanit-300.woff2') format('woff2');font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:'Kanit';src:url('../fonts/kanit-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Kanit';src:url('../fonts/kanit-500.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+
+/* Da chegada à assinatura: o céu se abre sobre a ilha, a marca nasce dentro do arco, as unidades passam em tela cheia, as avaliações dos hóspedes chegam num círculo marrom, a Cubs num círculo off-white e o símbolo se desenha no fim. Entre as seções, um círculo nasce embaixo e cresce até cobrir a tela, com o título dentro. */
+:root{
+  color-scheme: light;
+  --noite:#4d2012;
+  --noite-funda:#421a0e; /* o mesmo marrom um tom abaixo: texto sobre o azul e sobre o laranja com leitura AA */
+  --espuma:#f9f1e5;
+  --brisa:#7597a4;
+  --sol:#ed6938;
+  --coral:#f4824f;
+  --creme:#fbe9b5; /* só como cor de texto: unidades em laranja e rodapé */
+  --terra:#af4922;
+  --ceu-topo:#5d8497;
+  --ceu-meio:#86a3b0;
+  --ceu-base:#d3d5d4;
+  --linha: rgba(77,32,18,.18);
+  --linha-clara: rgba(249,241,229,.22);
+  --display:'Anxler','Kanit',system-ui,sans-serif;
+  --texto:'Kanit',system-ui,sans-serif;
+  --g: clamp(20px, 4vw, 64px);
+  --gt: clamp(8px, 1vw, 16px); /* vão entre as fotos da faixa de arquitetura */
+  --gap: clamp(16px, 2vw, 32px);
+  --t-hero: clamp(2.4rem, 5.2vw, 5.6rem);
+  --t-xl: clamp(2.1rem, 4.6vw, 5rem);
+  --t-l: clamp(1.7rem, 2.9vw, 3.1rem);
+  --t-m: clamp(1.15rem, 1.5vw, 1.5rem);
+  --t-corpo: clamp(1rem, 1.08vw, 1.1rem);
+  --ease: cubic-bezier(.2,.7,.15,1);
+}
+*{box-sizing:border-box}
+html.lenis, html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto !important}
+.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+.lenis.lenis-stopped{overflow:hidden}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--espuma);color:var(--noite);font-family:var(--texto);font-weight:300;font-size:var(--t-corpo);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+:focus-visible{outline:2px solid currentColor;outline-offset:3px} /* o foco acompanha a cor do texto: visível no off-white, no azul, nas fotos e no menu */
+/* títulos que recebem o foco depois de um salto (não são clicáveis): sem contorno, o leitor de tela já anuncia o lugar */
+h1[tabindex="-1"]:focus,h2[tabindex="-1"]:focus,h3[tabindex="-1"]:focus{outline:none}
+h1,h2,h3,p,figure,ol{margin:0}
+h1,h2,h3{font-weight:300;text-wrap:balance}
+.rotulo{font-family:var(--texto);font-weight:400;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;line-height:1.4}
+.leve{font-weight:300}.forte{font-weight:800}
+svg{display:block}
+.mask-line{padding-bottom:.14em;margin-bottom:-.14em}
+/* a máscara de cada linha corta só embaixo (onde a linha se esconde antes de entrar): acentos e pingos acima da linha ficam inteiros */
+.mask-mask-line-mask{overflow:visible!important;clip-path:inset(-.4em -.25em 0 -.25em)}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.pular{position:fixed;left:16px;top:12px;z-index:200;background:var(--espuma);color:var(--noite);padding:14px 20px;border-radius:999px;font-size:.78rem;font-weight:400;text-decoration:none;transform:translateY(-180%);transition:transform .3s var(--ease)}
+.pular:focus{transform:none}
+
+/* um só botão de reserva em todo o site: laranja, texto marrom-escuro */
+.btn-reserva{display:inline-flex;align-items:center;justify-content:center;gap:.65em;min-height:44px;background:var(--sol);color:var(--noite-funda);text-decoration:none;font-weight:500;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding:1em 1.55em;border-radius:999px;transition:background .3s,color .3s,border-color .3s;white-space:nowrap;line-height:1}
+.btn-reserva:hover{background:var(--coral)}
+.btn-reserva svg{width:.85em;height:.85em}
+.link-seco{display:inline-block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;text-decoration:none;border-bottom:1px solid currentColor;padding:14px 0 5px;line-height:1}
+.link-seco:hover{color:var(--terra)}
+/* área de toque de 44 px sem mudar o desenho do link */
+.link-seco{position:relative}
+.link-seco::before{content:"";position:absolute;left:-8px;right:-8px;top:-4px;bottom:-8px}
+
+/* a chegada: o título e o "Role" esperam o script para entrar animados (sem aparecer e sumir antes) */
+html.entrando #titulo > span,html.entrando .role{opacity:0}
+
+/* ───── Topo ───── */
+.topo{position:fixed;inset-inline:0;top:0;z-index:50;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:calc(env(safe-area-inset-top,0px) + 12px) var(--g) 0;pointer-events:none}
+.topo > *{pointer-events:auto}
+/* sem faixa: o selo à esquerda e os botões à direita; cada lado fica branco sobre foto e azul e marrom sobre o off-white */
+.selo{position:relative;display:block;width:clamp(76px,7.4vw,112px);aspect-ratio:1;margin-left:calc(clamp(6px,1vw,14px) * -1);color:#fff;transition:color .5s}
+.selo svg{display:block;width:100%;height:100%;overflow:visible}
+.selo text{font-family:var(--texto);font-weight:500;font-size:9.6px;text-transform:uppercase;fill:currentColor}
+.selo-simb{position:absolute;left:50%;top:50%;width:34%;transform:translate(-50%,-52%);--sol:currentColor}
+.selo-simb svg{display:block;width:100%;height:auto}
+.topo-acoes{display:flex;align-items:center;gap:12px;margin-top:clamp(10px,1.6vw,22px);color:#fff;transition:color .5s,opacity .45s,transform .55s var(--ease)}
+/* ao descer, os botões saem de cima do texto e voltam assim que a pessoa sobe um pouco; o selo fica sempre */
+.topo-acoes.oculto{opacity:0;transform:translateY(-16px);pointer-events:none}
+/* o Menu ganha um fundo leve: passa por cima do texto ou da foto sem misturar com eles */
+.topo-acoes .btn-menu{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:background-color .5s}
+.topo-acoes[data-tema="claro"] .btn-menu{background:rgba(249,241,229,.88)}
+.topo-acoes[data-tema="escuro"] .btn-menu{background:rgba(26,21,17,.2)}
+.topo-acoes.oculto:focus-within{opacity:1;transform:none;pointer-events:auto}
+.selo[data-tema="claro"],.topo-acoes[data-tema="claro"]{color:var(--noite)}
+.selo[data-tema="escuro"]{filter:drop-shadow(0 1px 12px rgba(20,12,8,.3))}
+/* o logo é sempre branco, inclusive o acento do â */
+.topo .logo,.menu .logo{--sol:currentColor;color:#fff}
+.topo .btn-reserva{justify-self:end}
+.btn-menu{justify-self:start;display:inline-flex;align-items:center;gap:.8em;min-height:44px;border:1px solid currentColor;border-radius:999px;padding:.82em 1.25em;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;font-weight:400;line-height:1}
+.btn-menu i{display:grid;gap:4px;width:15px}
+.btn-menu i::before,.btn-menu i::after{content:"";height:1px;background:currentColor}
+
+/* ───── Chegada: céu, nuvens e ilha ───── */
+.heroi{--hs:70svh;position:relative;height:100svh;min-height:560px;overflow:hidden;background:var(--ceu-base);color:var(--noite)}
+.cena{position:absolute;left:0;right:0;top:0;height:calc(var(--hs) + 100svh);will-change:transform}
+.ceu{position:absolute;left:0;right:0;top:0;height:calc(var(--hs) + 2px);background:linear-gradient(180deg,var(--ceu-topo) 0%,#678b9d 34%,#6f91a2 50%,var(--ceu-meio) 64%,#bfcccd 84%,var(--ceu-base) 100%)}
+.ilha{position:absolute;left:0;right:0;top:var(--hs);height:100svh;overflow:hidden}
+.ilha::before{content:"";position:absolute;left:0;right:0;top:0;height:15%;z-index:1;background:linear-gradient(180deg,var(--ceu-base) 0%,rgba(211,213,212,.6) 32%,rgba(211,213,212,0) 100%)}
+.ilha::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(40,18,10,0) 55%,rgba(40,18,10,.35) 100%)}
+/* em tela em pé (celular), a foto vem num recorte vertical do meio: o mesmo enquadramento, com um terço do peso */
+.ilha picture{display:block;width:100%;height:100%}
+.ilha img{width:100%;height:100%;object-fit:cover;object-position:center 30%;transform-origin:50% 0}
+.veu{position:absolute;left:0;right:0;top:0;height:clamp(120px,22svh,220px);background:linear-gradient(180deg,rgba(28,16,10,.34),rgba(28,16,10,0));pointer-events:none;opacity:0}
+.banco{position:absolute;top:47svh;width:78vw;pointer-events:none}
+/* as nuvens são decoração: carregam depois da foto da ilha (fetchpriority baixo), com a proporção já reservada */
+.banco img{width:100%;height:auto}
+.banco.esq{left:-9vw}
+.banco.dir{right:-9vw}
+.heroi-txt{position:absolute;left:var(--g);right:var(--g);top:clamp(132px,22svh,230px);text-align:center;color:#fff}
+.heroi h1{font-family:var(--display);font-size:var(--t-hero);line-height:1.04;letter-spacing:-.012em;text-shadow:0 1px 2px rgba(38,62,74,.12),0 2px 40px rgba(38,62,74,.26)}
+.heroi h1 span{display:block}
+.role{position:absolute;left:50%;bottom:clamp(22px,5svh,46px);transform:translateX(-50%);display:grid;justify-items:center;gap:10px;font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;font-weight:500}
+.role i{display:block;width:1px;height:42px;background:currentColor;transform-origin:top;animation:pinga 2.2s var(--ease) infinite}
+@keyframes pinga{0%{transform:scaleY(0);opacity:1}60%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+.arco{--d:max(150vw,170svh);position:absolute;left:50%;top:100%;width:var(--d);height:var(--d);margin-left:calc(var(--d) / -2);border-radius:50%;background:var(--espuma);pointer-events:none;will-change:transform}
+.arco .simb{position:absolute;left:50%;top:6.4%;width:clamp(42px,3.4vw,58px);transform:translateX(-50%);color:var(--sol)}
+
+/* ───── A marca: a frase do manifesto, centrada e sem pressa ───── */
+/* a seção sobe por baixo do arco da chegada (--sobe é calculado no script): a frase aparece dentro do círculo, sem uma tela vazia entre os dois */
+.sobre{--sobe:0px;position:relative;z-index:3;margin-top:calc(-1 * var(--sobe));padding:clamp(96px,14svh,150px) var(--g) clamp(24px,4svh,48px);display:flex;flex-direction:column;align-items:center;text-align:center;background:linear-gradient(180deg,rgba(249,241,229,0) 0,rgba(249,241,229,0) var(--sobe),var(--espuma) var(--sobe))}
+html.anima .sobre{padding-top:0}
+.declaracao{font-family:var(--display);font-size:clamp(2.1rem,5.3vw,6.2rem);line-height:1.05;letter-spacing:-.015em;max-width:17ch;text-wrap:balance}
+.declaracao b{font-weight:800;display:block}
+.sobre-txt{margin-top:clamp(24px,4.4svh,44px);max-width:44ch;text-wrap:pretty}
+
+/* ───── Passagens: um círculo nasce embaixo e cresce até cobrir a tela, com o título da seção seguinte dentro ───── */
+.capa{--sobra:40svh;position:relative;z-index:4;height:var(--alt,100svh);min-height:520px;background:var(--fora)}
+.capa-c{--alt:100svh;min-height:640px;--fora:var(--espuma);--dentro:var(--espuma)}
+.capa-sol{position:absolute;inset:0;background:var(--dentro)}
+.capa-txt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(18px,3svh,30px);padding:0 var(--g) 4svh;text-align:center}
+/* com animação, a camada do círculo sobe além da capa: o círculo cresce redondo, como um sol, por cima do fim da seção anterior */
+html.anima .capa > .capa-sol{top:calc(-1 * var(--sobra))}
+html.anima .capa > .capa-sol > .capa-txt{top:var(--sobra)}
+.capa-tit{font-family:var(--display);font-weight:300;font-size:clamp(2.3rem,5.3vw,6rem);line-height:1.04;letter-spacing:-.015em;max-width:16ch;text-wrap:balance}
+.capa-tit span{display:block}
+.capa-tit b,.capa-tit .forte{font-weight:800}
+.capa-corpo{max-width:42ch;font-weight:400;font-size:clamp(1.05rem,1.2vw,1.2rem);line-height:1.6}
+.capa-txt .links{display:flex;flex-wrap:wrap;justify-content:center;gap:0 32px}
+/* Construção: centrada, como a frase da marca e no mesmo tamanho dela. A da marca nasce dentro do arco da chegada; a da Cubs sobe
+   dentro do off-white com a borda em coração, por cima da fachada. Título em duas linhas (leve e negrito), o texto e o link embaixo */
+.capa-c .capa-txt{color:var(--noite);gap:0}
+.capa-c .capa-tit{max-width:none;font-size:clamp(2.1rem,5.3vw,6.2rem);line-height:1.05}
+.capa-c .capa-lado{display:grid;justify-items:center;gap:clamp(16px,2.6svh,26px);margin-top:clamp(22px,4svh,40px)}
+.capa-c .capa-corpo{max-width:46ch;font-weight:300;font-size:clamp(1.06rem,1.25vw,1.3rem);line-height:1.55;text-wrap:pretty}
+/* Construção: o off-white sobe por cima da fachada do Cubs (o fim das avaliações) com a borda de cima em coração, a curva de
+   Castelhanos do símbolo. A camada sobe além da capa (--sobra) para caber a curva, que fica acima do bico */
+html.anima .capa-c{--sobra:max(50vw,42svh);--fora:transparent;--alt:max(100svh,560px);min-height:0;margin-top:calc(-1 * max(100svh,560px))}
+/* a camada desce 2 px além da capa: na emenda com a fachada embaixo, nenhum fio escuro aparece em pixel quebrado */
+html.anima .capa-c > .capa-sol{bottom:-2px}
+/* sem animação, a Construção é um bloco comum, com o texto em cima e embaixo do respiro */
+html:not(.anima) .capa-c{height:auto;min-height:0}
+html:not(.anima) .capa-c > .capa-sol{position:relative}
+html:not(.anima) .capa-c .capa-txt{position:relative;inset:auto;min-height:max(100svh,620px)}
+/* passagem para o fechamento: a linha do horizonte. O fechamento sobe por cima do fim da Construção, com o topo logo abaixo do texto
+   da Cubs (o encaixe é medido no script): uma linha azul se desenha da esquerda para a direita e o azul abre só para baixo, sem passar
+   por cima do texto; a primeira palavra do símbolo (Afeto) já está no alto do azul */
+html.anima .fim{z-index:5;clip-path:inset(0 100% calc(100% - 2px) 0)}
+
+/* ───── Avaliações: no off-white, como o resto da página, com a frase grande em Anxler, uma foto da unidade e o trecho da avaliação.
+   No computador, um trilho que corre para o lado com a rolagem (regras html.h abaixo); no celular, o título entra pelos lados e os
+   depoimentos viram uma faixa que se arrasta; sem animação, uma grade ───── */
+.provas{position:relative;z-index:4;background:var(--espuma);color:var(--noite)}
+/* overflow:hidden: no celular, as linhas do título entram pelos lados sem alargar a página */
+.pv-abre{position:relative;overflow:hidden;padding:clamp(84px,13svh,150px) var(--g) clamp(26px,4.4svh,52px)}
+.pv-tit{font-family:var(--display);font-weight:300;font-size:var(--pvt);line-height:.95;letter-spacing:-.025em}
+.pv-tit span{display:block}
+.pv-tit .forte{font-weight:800}
+.pv-abre-txt{margin-top:clamp(18px,3svh,30px);max-width:27ch;font-size:clamp(1.05rem,1.3vw,1.3rem);line-height:1.5}
+/* o título e a frase dos hóspedes formam um bloco: a frase fica à direita, alinhada ao fim de "quer voltar." */
+/* o bloco tem a largura do título, e a frase termina alinhada com o ponto de "voltar." (o título não anda mais com a paralaxe,
+   para o alinhamento valer durante toda a passagem) */
+.pv-abre-bloco{--pvt:clamp(3.3rem,14.6vw,7.5rem);display:inline-grid}
+.pv-abre-txt{justify-self:end;text-align:right;text-wrap:balance}
+.pv-lista{list-style:none;margin:0;padding:0}
+/* position:relative prende o texto para leitor de tela (.sr) dentro do depoimento: na faixa do celular, ele não vaza da página */
+.pv{position:relative;display:flex;flex-direction:column;gap:16px}
+.pv-foto{position:relative;overflow:hidden;background:rgba(66,26,14,.12)}
+.pv-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* a porta: a foto da Vila Trancoso Itaquanduba no formato de arco, o mesmo que abre a Construção */
+.pv-arco .pv-foto{border-radius:999px 999px 0 0}
+.pv-frase{font-family:var(--display);font-weight:300;font-size:clamp(2.1rem,9vw,2.9rem);line-height:1.04;letter-spacing:-.02em}
+.pv-frase .ln{display:block}
+.pv-frase .ln > span{display:block}
+.pv-frase b{font-weight:800}
+.pv-cit{margin:0;display:grid;gap:14px}
+.pv-txt{margin:0}
+.pv-txt p{font-size:clamp(.95rem,.98vw,1.12rem);line-height:1.6;text-wrap:pretty}
+.pv-txt p::before{content:"“"}
+.pv-txt p::after{content:"”"}
+.pv-txt b{font-weight:500}
+.pv-quem{display:grid;gap:3px}
+.pv-nota{color:var(--terra);font-size:.7rem;letter-spacing:.2em;font-weight:500;line-height:1.8}
+.pv-nome{font-weight:500;font-size:.95rem;line-height:1.3}
+.pv-quem .rotulo{opacity:.75}
+.pv-linha{display:none}
+/* a última: a fachada do Cubs em tela cheia, com véu; frase, trecho e nome em off-white */
+.pv-fim-wrap{position:relative}
+.pv-fim{position:relative;min-height:max(88svh,540px);display:flex;flex-direction:column;justify-content:flex-end;gap:clamp(18px,3svh,30px);padding:clamp(84px,12svh,120px) var(--g) clamp(40px,8svh,90px);overflow:hidden;background:#2a2521;color:var(--espuma)}
+.pv-fim .pv-foto{position:absolute;inset:0;background:none}
+.pv-fim .pv-foto::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(26,21,17,.8) 0%,rgba(26,21,17,.5) 38%,rgba(26,21,17,.12) 68%,rgba(26,21,17,0) 82%),linear-gradient(180deg,rgba(26,21,17,.36) 0%,rgba(26,21,17,0) 24%)}
+.pv-fim-txt{position:relative;z-index:1;display:flex;flex-direction:column;gap:clamp(18px,3svh,30px)}
+.pv-fim .pv-frase{font-size:clamp(2.4rem,10vw,3.4rem)}
+.pv-fim .pv-corpo{max-width:36ch}
+.pv-fim .pv-nota{color:var(--espuma)}
+.pv-fim .pv-quem .rotulo{opacity:.85}
+/* sem animação, no computador: uma grade de três */
+@media (min-width:901px){
+  html:not(.h) .pv-lista{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(48px,8svh,96px) var(--gap);padding:clamp(20px,4svh,40px) var(--g) clamp(80px,12svh,140px)}
+  html:not(.h) .pv-foto{aspect-ratio:4/3}
+  html:not(.h) .pv-frase{font-size:clamp(2.2rem,3.4vw,3.4rem)}
+  html:not(.h) .pv-fim .pv-frase{font-size:clamp(3rem,6vw,6rem)}
+}
+
+/* computador: a seção sobe duas telas por cima do fim das unidades e o palco fica preso na tela (sticky). O trilho começa fora,
+   à direita, e anda para a esquerda com a rolagem: o off-white entra por cima da última unidade, que fica parada embaixo.
+   A seção não pega clique: só os painéis, quando estão na tela */
+html.h .provas{background:transparent;pointer-events:none;margin-top:calc(-1 * max(100svh,560px) - 100svh)}
+html.h .pv-palco{position:sticky;top:0;height:100svh;overflow:hidden}
+/* o trilho tem o próprio fundo off-white: entre um painel e outro não aparece fio da foto que fica embaixo */
+html.h .pv-trilho{position:relative;display:flex;align-items:stretch;height:100%;width:max-content;transform:translateX(100vw);will-change:transform;background:var(--espuma)}
+html.h .pv-abre,html.h .pv-lista > li,html.h .pv-fim-wrap{position:relative;flex:none;height:100%;pointer-events:auto;background:var(--espuma)}
+html.h .pv-lista{display:flex;height:100%}
+/* a abertura não ocupa a tela inteira: quando ela termina de entrar, a foto do primeiro depoimento já aparece à direita */
+html.h .pv-abre{width:74vw;padding:0;box-shadow:-30px 0 70px rgba(26,21,17,.24)}
+html.h .pv-abre-bloco{position:absolute;left:var(--g);top:17svh;display:inline-grid}
+html.h .pv-abre-bloco{--pvt:min(10.8vw,19.5svh)}
+html.h .pv-tit{line-height:.93}
+html.h .pv-tit .forte{padding-left:.86em}
+html.h .pv-abre-txt{margin:clamp(20px,3.4svh,34px) 0 0;max-width:24ch;font-size:clamp(1.1rem,1.45vw,1.5rem)}
+html.h .pv{display:block}
+html.h .pv-foto,html.h .pv-frase,html.h .pv-corpo{position:absolute}
+html.h .pv-frase{font-size:var(--fs);line-height:1.01}
+html.h .pv-corpo{width:min(29vw,30rem)}
+/* cada depoimento tem o seu desenho: foto alta ao lado da frase, frase grande embaixo e foto deitada em cima, a porta em arco no meio.
+   Entre duas fotos sempre passa texto: a foto de um depoimento nunca fica colada na do seguinte */
+/* o primeiro depoimento tem a foto deitada e grande, embaixo, em diagonal com o título da seção; a frase e o trecho ficam ao lado */
+html.h .pv-1{width:92vw}
+html.h .pv-1 .pv-foto{left:3vw;bottom:12svh;width:44vw;height:min(29.33vw,52svh)}
+html.h .pv-1 .pv-frase{--fs:min(7.4vw,13svh);left:51vw;top:12svh}
+html.h .pv-1 .pv-corpo{left:51vw;bottom:12svh}
+html.h .pv-2{width:78vw}
+html.h .pv-2 .pv-foto{left:41vw;top:10svh;width:32vw;height:38svh}
+html.h .pv-2 .pv-corpo{left:4vw;top:18svh}
+html.h .pv-2 .pv-frase{--fs:min(8vw,14svh);left:4vw;bottom:10svh}
+html.h .pv-3{width:86vw}
+html.h .pv-3 .pv-frase{--fs:min(6.3vw,11.2svh);left:4vw;top:13svh}
+html.h .pv-3 .pv-corpo{left:4vw;bottom:12svh}
+html.h .pv-3 .pv-foto{left:55vw;top:13svh;width:22vw;height:56svh}
+html.h .pv-4{width:108vw}
+html.h .pv-4 .pv-foto{left:45vw;top:10svh;width:26vw;height:80svh}
+html.h .pv-4 .pv-frase{--fs:min(7.6vw,13.5svh);left:6vw;bottom:10svh}
+html.h .pv-4 .pv-corpo{left:76vw;top:16svh;width:clamp(17rem,23vw,25rem)}
+html.h .pv-5{width:80vw}
+html.h .pv-5 .pv-foto{left:4vw;top:10svh;width:31vw;height:36svh}
+html.h .pv-5 .pv-corpo{left:43vw;top:16svh}
+html.h .pv-5 .pv-frase{--fs:min(7.6vw,13.5svh);left:4vw;bottom:10svh}
+html.h .pv-fim-wrap{width:100vw;box-shadow:-30px 0 70px rgba(26,21,17,.2)}
+html.h .pv-fim{position:absolute;inset:0;min-height:0;padding:0 var(--g) clamp(48px,11svh,110px)}
+html.h .pv-fim .pv-frase{font-size:min(7.2vw,13svh)}
+html.h .pv-fim .pv-corpo{position:relative;width:auto;max-width:min(36vw,32rem)}
+html.h .pv-fim .pv-frase{position:relative}
+html.h .pv-fim-txt{gap:clamp(18px,3svh,30px)}
+/* cada depoimento aparece um pouco antes de chegar na tela, sem recorte: a foto e as linhas da frase surgem num esmaecido curto,
+   subindo de leve, e o trecho logo depois. Assim, mesmo com a rolagem rápida, nada aparece cortado pela metade */
+html.h .pv .pv-foto{opacity:0;transform:translateY(26px);transition:opacity 1s var(--ease),transform 1.2s var(--ease)}
+html.h .pv.on .pv-foto{opacity:1;transform:none}
+html.h .pv .pv-frase .ln > span,html.h .pv-fim .pv-frase .ln > span{opacity:0;transform:translateY(.28em);transition:opacity .9s var(--ease),transform 1.1s var(--ease)}
+html.h .pv .pv-frase .ln + .ln > span,html.h .pv-fim .pv-frase .ln + .ln > span{transition-delay:.08s}
+html.h .pv.on .pv-frase .ln > span,html.h .pv-fim.on .pv-frase .ln > span{opacity:1;transform:none}
+html.h .pv .pv-corpo,html.h .pv-fim .pv-corpo{opacity:0;transform:translateY(18px);transition:opacity .9s var(--ease) .2s,transform .9s var(--ease) .2s}
+html.h .pv.on .pv-corpo,html.h .pv-fim.on .pv-corpo{opacity:1;transform:none}
+
+/* ───── Unidades: logo depois da frase da marca. No computador, uma tela presa à rolagem, como o resto do site: a marca sobe
+   como uma folha off-white e descobre a primeira unidade em tela cheia, parada embaixo dela; a rolagem passa de uma unidade para a
+   outra numa dissolução curta. A foto aparece inteira; o véu que dá leitura ao texto entra junto com ele, quando a
+   tela prende. No celular, e sem animação, vira uma lista: foto, ambientes e texto ───── */
+.unidades{position:relative;background:var(--espuma);color:var(--noite)}
+/* até o script montar as unidades, o espaço delas fica reservado (menor que a lista pronta): as fotos das seções de baixo não
+   carregam junto com a chegada. Sem JavaScript, vale a lista simples */
+html.com-js #listaUnidades{min-height:300vh;min-height:300svh}
+html:not(.com-js) .btn-menu,html:not(.com-js) button[data-alvo]{display:none}
+.caps{padding:clamp(72px,12svh,150px) var(--g) clamp(64px,10svh,120px)}
+/* a borda de baixo da marca é uma névoa: o papel off-white termina sem linha e a foto aparece por baixo dele */
+.sobre-nevoa{position:absolute;left:0;right:0;top:calc(100% - 1px);height:30svh;z-index:2;pointer-events:none;background:linear-gradient(180deg,var(--espuma) 0%,rgba(249,241,229,.94) 18%,rgba(249,241,229,.66) 44%,rgba(249,241,229,.26) 72%,rgba(249,241,229,0) 100%)}
+.sobre-nevoa{display:none}
+html.h .sobre-nevoa{display:block}
+.cap{position:relative;margin-bottom:clamp(100px,17svh,200px);scroll-margin-top:clamp(84px,12svh,120px)}
+.cap:last-of-type{margin-bottom:0}
+.cap-foto{position:relative;aspect-ratio:3/2;overflow:hidden;background:rgba(66,26,14,.16)}
+.cap-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s var(--ease)}
+.cap-foto img.on{opacity:1}
+@media (hover:none){.cap-foto{touch-action:pan-y}}
+.cap-galeria{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:14px}
+.cap-legenda{white-space:nowrap}
+.minis{display:flex;gap:6px}
+.mini{width:clamp(60px,5.4vw,92px);min-height:44px;aspect-ratio:3/2;overflow:hidden;opacity:.55;outline:1px solid transparent;outline-offset:3px;transition:opacity .35s,outline-color .35s}
+.mini img{display:block;width:100%;height:100%;object-fit:cover}
+.mini:hover{opacity:.9}
+.mini[aria-pressed="true"]{opacity:1;outline-color:currentColor}
+.mini:focus-visible{opacity:1;outline:2px solid currentColor;outline-offset:3px}
+.u-ico{display:grid;place-items:center;width:56px;height:46px;border:1.5px solid currentColor}
+.u-ico i{display:block;width:70%;aspect-ratio:162/133;background:currentColor;-webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat}
+.cap h3{font-family:var(--display);font-size:clamp(2.3rem,4.4vw,5rem);line-height:.98;letter-spacing:-.012em;margin-top:22px}
+.cap h3 span{display:block}
+.u-frase{font-family:var(--display);font-weight:300;font-size:var(--t-m);line-height:1.25;max-width:28ch;margin-top:16px;text-wrap:balance}
+.cap-base{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:28px}
+.cap-base .rotulo{line-height:1.6;text-wrap:balance}
+/* ───── Localização de cada unidade: três tempos sempre à vista, junto do texto (praia e mercado a pé, balsa de carro), calculados
+   por rota a partir do endereço, e o mapa do entorno como último ambiente da galeria. O mapa é desenhado nas cores da marca: a ilha
+   escura com as ruas em linhas finas, o mar em azul, a areia das praias, a unidade em laranja e o caminho a pé até a praia pontilhado.
+   Não é um mapa que se arrasta: é uma foto do bairro, como os outros ambientes (não prende a rolagem nem pesa a página) ───── */
+/* os três tempos em colunas iguais, com o modo (a pé, de carro) embaixo; onde o texto tem largura (a tela cheia, o tablet), numa
+   linha só */
+.cap-txt{container-type:inline-size}
+.u-perto{list-style:none;margin:24px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%}
+.u-perto li{display:grid;align-content:start;gap:5px;padding:0 12px;border-left:1px solid var(--linha)}
+.u-perto li:first-child{padding-left:0;border-left:0}
+.u-perto .rotulo{font-size:.62rem;letter-spacing:.2em;opacity:.8}
+.u-perto-v{font-family:var(--display);font-weight:300;font-size:clamp(1.1rem,1.3vw,1.36rem);line-height:1.05;white-space:nowrap}
+.u-perto-v b{font-weight:800}
+.u-modo{display:block}
+@container (min-width:460px){
+  .u-perto{display:flex;width:auto}
+  .u-perto li{padding:0 clamp(16px,1.6vw,24px)}
+  .u-modo{display:inline}
+}
+/* a reserva e, ao lado, "Ver no mapa" (o desenho do link seco, com o pin); vira "Ver as fotos" quando o mapa está à vista */
+.cap-acoes{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px}
+.u-ver-mapa{position:relative;display:inline-flex;align-items:center;gap:.6em;padding:6px 0 5px;border-bottom:1px solid currentColor;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;line-height:1;white-space:nowrap;transition:color .3s}
+.u-ver-mapa svg{width:1.05em;height:1.2em;flex:none}
+.u-ver-mapa::before{content:"";position:absolute;left:-8px;right:-8px;top:-12px;bottom:-12px}
+.u-ver-mapa:hover{color:var(--terra)}
+/* a linha da legenda: o nome do ambiente e, no mapa, "Como chegar" (no celular e na lista; na tela cheia ele fica junto do pin) */
+.cap-leg{display:flex;align-items:baseline;justify-content:space-between;gap:16px;min-width:0}
+.cap-rota{position:relative;display:none;align-items:center;gap:.55em;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;line-height:1;text-decoration:none;border-bottom:1px solid currentColor;padding:12px 0 4px;white-space:nowrap}
+.cap-rota svg{width:.8em;height:.8em}
+.cap-rota::before{content:"";position:absolute;left:-8px;right:-8px;top:-4px;bottom:-12px}
+.cap.vendo-mapa .cap-rota{display:inline-flex}
+
+/* o mapa: entra e sai como as fotos (a dissolução da galeria); escondido, nada nele recebe foco */
+.cap-mapa,.mini-mapa{--mb-terra:#2c2420;--mb-mar:#3a5662;--mb-praia:rgba(251,233,181,.3);--mb-rua:rgba(249,241,229,.15);--mb-via:rgba(249,241,229,.36);--mb-costa:rgba(249,241,229,.32)}
+.cap-mapa{position:absolute;inset:0;overflow:hidden;opacity:0;visibility:hidden;transition:opacity .9s var(--ease),visibility 0s .9s;background:var(--mb-terra);color:var(--espuma)}
+.cap-mapa.on{opacity:1;visibility:visible;transition:opacity .9s var(--ease),visibility 0s}
+.cm-arte,.cm-sobre{position:absolute;left:0;top:0;width:100%;height:100%;display:block;overflow:hidden}
+.mb-mar{fill:var(--mb-mar)}
+.mb-terra{fill:var(--mb-terra)}
+.mb-praia{fill:var(--mb-praia)}
+.mb-rua,.mb-via,.mb-costa{fill:none;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+.mb-rua{stroke:var(--mb-rua);stroke-width:1px}
+.mb-via{stroke:var(--mb-via);stroke-width:1.9px}
+.mb-costa{stroke:var(--mb-costa);stroke-width:1px}
+/* o caminho a pé até a praia: pontos na cor da areia (aparecem da porta até a praia quando o mapa abre) */
+.cm-caminho{fill:none;stroke:var(--creme);stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:0 7.5}
+.cm-revela{fill:none;stroke:#fff;stroke-width:14;stroke-linecap:round;stroke-linejoin:round}
+.cm-camada{position:absolute;inset:0;pointer-events:none}
+.cm-pin{position:absolute;left:0;top:0;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;background:var(--sol);box-shadow:0 0 0 3px var(--espuma),0 6px 18px rgba(0,0,0,.45)}
+.cm-pin::before{content:"";position:absolute;inset:0;border-radius:50%;background:var(--sol);animation:cm-halo 2s var(--ease) infinite}
+.cap-mapa:not(.on) .cm-pin::before{animation:none}
+@keyframes cm-halo{from{opacity:.55;transform:scale(1)}to{opacity:0;transform:scale(3.8)}}
+.cm-ponto{position:absolute;left:0;top:0;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--espuma);box-shadow:0 0 0 3px rgba(44,36,32,.9)}
+.cm-ponto[data-t="praia"]{background:var(--creme)}
+/* o nome do lugar em versalete e o tempo a pé em Anxler, como os tempos do texto; um halo escuro separa as letras das ruas */
+.cm-rot{position:absolute;left:0;top:0;display:grid;justify-items:start;gap:3px;white-space:nowrap;line-height:1.1;text-shadow:0 0 10px rgba(30,23,19,.95),0 0 4px rgba(30,23,19,.95),0 1px 2px rgba(30,23,19,.9)}
+.cm-rot.esq{justify-items:end;text-align:right}
+.cm-rot.meio{justify-items:center;text-align:center}
+.cm-rot .n{font-weight:500;font-size:.64rem;letter-spacing:.17em;text-transform:uppercase}
+.cm-rot .c{display:none}
+.cm-rot .t{font-family:var(--display);font-weight:300;font-size:1.02rem}
+.cm-rot .t b{font-weight:800}
+/* um lugar cujo nome não coube não aparece (nem o ponto): um ponto sem nome não diz nada */
+.cm-rot.some,.cm-ponto.some,.cm-chegar.some{visibility:hidden !important}
+/* o endereço e "Como chegar": na tela cheia, junto do pin. O link mora no fim do texto da unidade (vem depois de "Ver no mapa" na
+   ordem do teclado) e aparece com o mapa */
+/* o endereço é um cartão (fundo escuro e um fio laranja do lado do pin): não se confunde com os nomes dos lugares em volta */
+.cm-chegar{position:absolute;left:0;top:0;z-index:2;width:max-content;display:grid;gap:7px;justify-items:start;padding:9px 13px 10px;background:rgba(28,22,18,.9);border:0 solid var(--sol);border-left-width:2px;color:var(--espuma);text-decoration:none;white-space:nowrap;box-shadow:0 10px 30px rgba(0,0,0,.28);opacity:0;visibility:hidden;transition:opacity .6s var(--ease),visibility 0s .6s}
+.cap.vendo-mapa .cm-chegar{opacity:1;visibility:visible;transition:opacity .6s var(--ease),visibility 0s}
+.cm-chegar.esq{justify-items:end;text-align:right}
+.cap.cartao-curto .cm-end{display:none}
+/* o fio laranja do lado do pin: à esquerda, à direita, em cima ou embaixo do cartão */
+.cm-chegar[data-fio="dir"]{border-left-width:0;border-right-width:2px}
+.cm-chegar[data-fio="cima"]{border-left-width:0;border-top-width:2px}
+.cm-chegar[data-fio="baixo"]{border-left-width:0;border-bottom-width:2px}
+.cm-end{font-weight:400;font-size:.95rem;line-height:1.2;white-space:normal;max-width:13.5em;text-wrap:balance}
+.cm-ir{display:inline-flex;align-items:center;gap:.55em;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;line-height:1;padding-bottom:4px;border-bottom:1px solid currentColor;transition:color .3s}
+.cm-ir svg{width:.8em;height:.8em}
+.cm-chegar:hover .cm-ir{color:var(--coral)}
+.cm-osm{position:absolute;left:10px;bottom:7px;font-size:.6rem;letter-spacing:.06em;line-height:1;color:rgba(249,241,229,.78);text-decoration:none;padding:6px 0}
+.cm-osm:hover{color:var(--espuma);text-decoration:underline}
+/* mapa pequeno (celular, lista): o nome curto do lugar e letras um pouco menores */
+.cap-mapa.compacto .cm-rot .n{display:none}
+.cap-mapa.compacto .cm-rot .c{display:block;font-weight:500;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase}
+.cap-mapa.compacto .cm-rot .t{font-size:.88rem}
+.cap-mapa.compacto .cm-pin{width:14px;height:14px;margin:-7px 0 0 -7px;box-shadow:0 0 0 2.5px var(--espuma),0 4px 12px rgba(0,0,0,.45)}
+.cap-mapa.compacto .cm-ponto{width:8px;height:8px;margin:-4px 0 0 -4px;box-shadow:0 0 0 2.5px rgba(44,36,32,.9)}
+.cap-mapa.compacto .cm-caminho{stroke-width:2.3;stroke-dasharray:0 6}
+html:not(.h) .cm-chegar{display:none}
+/* a miniatura do mapa: o mar, a costa e as ruas do bairro, com a unidade no meio */
+.mini-mapa{position:relative;background:var(--mb-terra)}
+.mini-mapa svg{position:absolute;inset:0;width:100%;height:100%}
+.mini-mapa .mb-rua{stroke:rgba(249,241,229,.2)}
+.mini-mapa .mb-via{stroke-width:1.2px}
+.mini-mapa i{position:absolute;left:50%;top:50%;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;background:var(--sol);box-shadow:0 0 0 2px var(--espuma)}
+/* entre as fotos apagadas, a miniatura do mapa fica um pouco mais acesa: é o convite para ver onde a unidade fica */
+.mini.mini-mapa{opacity:.82}
+.mini.mini-mapa:hover,.mini.mini-mapa[aria-pressed="true"]{opacity:1}
+@media (min-width:901px){
+  .cap{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:center}
+  .cap-midia{grid-column:1/8;grid-row:1}
+  .cap-txt{grid-column:9/13;grid-row:1}
+  .cap:nth-of-type(even) .cap-midia{grid-column:6/13}
+  .cap:nth-of-type(even) .cap-txt{grid-column:1/5}
+}
+
+/* computador: tela cheia presa à rolagem. A foto ocupa a tela inteira, o texto fica embaixo à esquerda e os ambientes à direita */
+html.h .caps{position:relative;height:max(100svh,560px);overflow:hidden;padding:0;background:#2a2521}
+html.h .cap{position:absolute;inset:0;margin:0;display:block;overflow:hidden;color:var(--espuma)}
+html.h .cap-midia{display:contents}
+html.h .cap-foto{position:absolute;inset:0;aspect-ratio:auto;background:#2a2521}
+/* véu para a leitura: escurece o lado esquerdo e a faixa de baixo, onde ficam o texto, os ambientes e o índice, e um pouco o alto,
+   onde passa o topo da página. Enquanto a marca sobe, a primeira foto aparece limpa (.limpa); o véu entra junto com o texto */
+html.h .cap::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;transition:opacity .9s var(--ease);background:
+  radial-gradient(ellipse 52% 50% at 100% 100%,rgba(26,21,17,.5) 0%,rgba(26,21,17,.22) 55%,rgba(26,21,17,0) 100%),
+  linear-gradient(90deg,rgba(26,21,17,.74) 0%,rgba(26,21,17,.48) max(24%,360px),rgba(26,21,17,.12) max(50%,640px),rgba(26,21,17,0) max(62%,900px)),
+  linear-gradient(0deg,rgba(26,21,17,.82) 0%,rgba(26,21,17,.4) 22%,rgba(26,21,17,0) 44%),
+  linear-gradient(180deg,rgba(26,21,17,.42) 0%,rgba(26,21,17,0) 22%)}
+html.h .caps.limpa .cap::after{opacity:0;transition-duration:.35s}
+html.h .cap-txt{position:absolute;z-index:2;left:var(--g);bottom:calc(clamp(18px,4.2svh,42px) + 92px);width:min(52vw,760px);margin:0}
+html.h .cap h3{font-size:clamp(2.3rem,min(4.8vw,8.4svh),5.8rem);margin-top:clamp(10px,2svh,18px)}
+html.h .cap .u-frase{max-width:30ch;min-height:2.5em;color:rgba(249,241,229,.94)}
+html.h .cap-base{flex-direction:column;align-items:flex-start;gap:14px;margin-top:22px}
+html.h .cap-base .rotulo{opacity:.86}
+html.h .cap-galeria{position:absolute;z-index:2;right:var(--g);bottom:calc(clamp(18px,4.2svh,42px) + 92px);margin:0;display:grid;justify-items:end;gap:12px}
+html.h .cap-legenda{opacity:.95}
+html.h .mini{width:clamp(64px,6.4vw,112px)}
+/* tela cheia: os tempos em off-white sobre o véu, com divisórias claras e um halo leve (a linha dos tempos vai um pouco além da parte
+   mais escura do véu); a reserva e "Ver no mapa" lado a lado, na faixa de baixo, onde o véu é mais forte */
+html.h .u-perto{margin-top:clamp(14px,2.6svh,24px)}
+html.h .u-perto li{border-left-color:rgba(249,241,229,.3)}
+html.h .u-perto .rotulo{opacity:.92}
+html.h .u-perto,html.h .u-ver-mapa{text-shadow:0 1px 14px rgba(20,14,10,.55),0 0 2px rgba(20,14,10,.35)}
+html.h .u-ver-mapa:hover{color:var(--coral)}
+html.h .cap-base{margin-top:clamp(14px,2.4svh,22px)}
+html.h .cap-leg{justify-content:flex-end}
+/* o crédito do mapa fica no alto, à direita, logo abaixo dos botões do topo */
+html.h .cm-osm{left:auto;right:var(--g);bottom:auto;top:calc(env(safe-area-inset-top,0px) + 96px)}
+html.h .cap.vendo-mapa:not(.sem-chegar) .cap-rota{display:none}
+/* com o mapa à vista, o véu sai: o mapa já é escuro, o texto se lê sobre ele, e o mar liso não mostra as faixas do degradê */
+html.h .cap.vendo-mapa::after{opacity:0}
+/* o mapa não acompanha a aproximação leve da foto durante a rolagem (a escala é desfeita nele): os nomes perto da borda ficam
+   inteiros, e a foto não dá salto ao trocar para o mapa */
+html.h .cap-mapa{transform:scale(calc(1 / var(--zoom, 1)))}
+/* telas baixas: o ícone da unidade encolhe (e some nas muito baixas), para o texto não encostar no selo */
+@media (max-height:700px){ html.h .u-ico{width:44px;height:36px} }
+@media (max-height:600px){ html.h .u-ico{display:none} html.h .cap h3{margin-top:0} }
+/* índice: nome e bairro das cinco, sem numeração; a linha acompanha a rolagem e cada nome leva à sua unidade */
+.indice{display:none}
+html.h .indice{display:block;position:absolute;z-index:6;left:var(--g);right:var(--g);bottom:clamp(18px,4.2svh,42px);color:var(--espuma)}
+.indice ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));column-gap:var(--gap)}
+.indice button{display:grid;gap:3px;width:100%;min-height:44px;text-align:left;padding:0 0 14px;opacity:.68;transition:opacity .4s}
+html.h .indice:focus-within{opacity:1 !important;pointer-events:auto !important}
+.indice button:hover,.indice button[aria-current="true"]{opacity:1}
+.indice .nm{font-size:.92rem;font-weight:400;line-height:1.2;white-space:nowrap}
+.indice .br{font-size:.82rem;font-weight:300;line-height:1.2;opacity:.8;white-space:nowrap}
+.indice .trilho{height:1px;background:rgba(249,241,229,.3);position:relative}
+.indice .trilho b{position:absolute;inset:0;background:var(--espuma);transform-origin:left;transform:scaleX(0)}
+
+/* ───── Fechamento: o azul escurece como o mar no fim do dia; o símbolo se desenha em branco e o texto fica em creme ───── */
+.fim{position:relative;z-index:1;height:100svh;min-height:520px;overflow:hidden;color:#fff;display:grid;grid-template-rows:minmax(0,1fr) auto;padding:clamp(70px,9svh,100px) var(--g) clamp(18px,3.4svh,34px);
+  background:linear-gradient(180deg,var(--ceu-topo) 0%,#587e90 38%,#4f7486 68%,#3f6273 100%)}
+.fim-palco{position:relative;z-index:2;min-height:0;display:grid;place-items:center}
+.fim-centro{display:flex;flex-direction:column;align-items:center;text-align:center}
+.fim-marca{display:flex;flex-direction:column;align-items:center;--sol:currentColor;color:#fff}
+.fim-simb{display:block;width:clamp(88px,9vw,148px);aspect-ratio:324.7/307.2;transform-origin:50% 50%}
+.fim-simb svg{width:100%;height:100%;overflow:visible}
+.fim-word{display:block;width:min(410px,64vw);margin-top:clamp(20px,3.2svh,32px)}
+.fim-assin{display:block;width:min(362px,58vw);margin-top:clamp(10px,1.8svh,18px)}
+.fim-word svg,.fim-assin svg{width:100%;height:auto;overflow:visible}
+.fim .btn-reserva{margin-top:clamp(20px,3.4svh,34px)}
+/* o botão final só aparece no fim do desenho do símbolo; se alguém chega nele pelo teclado antes, ele aparece na hora */
+#fimBtn:focus-visible{opacity:1 !important;transform:none !important}
+/* legendas do símbolo: só as palavras do posicionamento (afeto, cuidado, conforto e descanso), uma a cada traço, no alto do palco */
+.fim-legs{position:absolute;left:50%;top:clamp(0px,2svh,24px);width:min(980px,92vw);transform:translateX(-50%);display:grid;text-align:center;color:#fff;pointer-events:none}
+.fim-leg{grid-area:1/1;opacity:0}
+.fim-leg:first-child{opacity:1}
+.fim-leg p{font-family:var(--display);font-weight:800;font-size:clamp(3rem,5.4vw,5.6rem);line-height:1;letter-spacing:-.015em;text-shadow:0 2px 26px rgba(30,52,62,.3)}
+html:not(.anima) .fim-legs{display:none}
+html:not(.anima) #fimFant{display:none}
+.fim .rodape{position:relative;z-index:2;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:4px 28px;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--creme)}
+.fim .rodape a,.fim .rodape button{display:inline-flex;align-items:center;min-height:36px;text-decoration:none;border-bottom:1px solid transparent;letter-spacing:inherit;text-transform:inherit;font-weight:inherit}
+.fim .rodape a:hover,.fim .rodape button:hover{color:#fff}
+.fim .rodape .credito a{text-decoration:underline;text-underline-offset:3px}
+
+/* ───── Menu ───── */
+.menu{position:fixed;inset:0;z-index:80;background:var(--noite);color:var(--espuma);display:grid;grid-template-rows:auto 1fr auto;padding:calc(env(safe-area-inset-top,0px) + 14px) var(--g) calc(env(safe-area-inset-bottom,0px) + 24px);clip-path:inset(0 0 100% 0);transition:clip-path .9s cubic-bezier(.7,0,.2,1),visibility 0s .9s;visibility:hidden;overflow-y:auto}
+.menu.aberto{clip-path:inset(0 0 0 0);visibility:visible;transition:clip-path .9s cubic-bezier(.7,0,.2,1),visibility 0s}
+.menu .topo-m{display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+.menu .topo-m .logo{grid-column:2;width:clamp(112px,9.5vw,138px)}
+.btn-fechar{justify-self:end;min-height:44px;background:var(--espuma);color:var(--noite);border-radius:999px;padding:.85em 1.4em;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;line-height:1}
+.menu .corpo{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,5vw,90px);align-items:center;min-height:0}
+.menu .previa{aspect-ratio:3/2;overflow:hidden;position:relative;background:rgba(249,241,229,.05)}
+.menu .previa img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s}
+.menu .previa img.on{opacity:1}
+.menu .lista .rotulo{margin-bottom:14px;display:block;color:rgba(249,241,229,.74)}
+.menu ol{list-style:none;padding:0}
+.menu ol li{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:18px;border-bottom:1px solid var(--linha-clara)}
+.menu ol .ir{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:12px;text-decoration:none;padding:.34em 0}
+.menu ol .b{color:rgba(249,241,229,.74)}
+.menu ol .t{font-family:var(--display);font-size:clamp(1.6rem,3.2vw,3.2rem);line-height:1.08;transition:transform .5s var(--ease)}
+.menu ol .b{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;font-weight:400}
+.menu ol .ir:hover .t{transform:translateX(10px)}
+.menu ol .reservar{display:inline-flex;align-items:center;gap:.55em;min-height:44px;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;text-decoration:none;color:var(--coral);white-space:nowrap}
+.menu ol .reservar svg{width:.8em;height:.8em}
+.menu ol .reservar:hover{color:var(--espuma)}
+.menu .base{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:4px 28px;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500}
+.menu .base a{display:inline-flex;align-items:center;min-height:44px;text-decoration:none}
+.menu .base nav{display:flex;flex-wrap:wrap;gap:0 28px}
+
+.barra{display:none}
+
+/* ───── Telas menores ───── */
+@media (max-width:900px){
+  .cap-galeria{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+  .minis{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr)}
+  .mini{width:100%}
+  .cap-txt{margin-top:26px}
+  .u-perto{margin-top:22px}
+  /* na lista do celular, as unidades ficam um pouco mais próximas umas das outras */
+  .cap{margin-bottom:clamp(76px,11svh,120px)}
+  .pv-abre-txt{max-width:21ch}
+  /* Construção: o coração também sobe no celular; o texto desce um pouco para o título não encostar no topo */
+  .capa-c .capa-txt{padding:clamp(96px,14svh,130px) var(--g) clamp(88px,13svh,124px)}
+  html:not(.anima) .capa-c .capa-txt{min-height:0}
+  .capa-c .capa-corpo{font-size:1.04rem}
+  /* avaliações: uma faixa que se arrasta para o lado, com o próximo depoimento aparecendo na borda; a linha embaixo mostra onde você está */
+  .pv-lista{display:flex;gap:calc(var(--g) + 2px);overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding-inline:var(--g);padding:clamp(6px,1.6svh,16px) var(--g) 4px;scrollbar-width:none}
+  .pv-lista::-webkit-scrollbar{display:none}
+  .pv-lista > li{flex:0 0 min(80vw,360px);scroll-snap-align:start}
+  /* o último depoimento também para encostado à esquerda, como os outros (sobra espaço depois dele); o vão entre os cartões é maior
+     que a margem, para não aparecer um fio do cartão anterior na borda */
+  .pv-lista > li:last-child{margin-right:calc(100vw - min(80vw,360px) - 2 * var(--g))}
+  .pv-foto{aspect-ratio:1/1}
+  /* na faixa do celular, todos os depoimentos têm a mesma foto quadrada: o arco do mar fica só no computador */
+  .pv-arco .pv-foto{border-radius:0}
+  .pv-fim .pv-foto{aspect-ratio:auto}
+  .pv-linha{display:block;position:relative;height:1px;margin:26px var(--g) clamp(64px,10svh,100px);background:var(--linha)}
+  .pv-linha b{position:absolute;top:0;bottom:0;left:0;width:100%;background:var(--noite)}
+  /* a fachada do Cubs fica parada na tela enquanto o off-white da Construção sobe por cima dela */
+  /* ela fica parada um instante inteira na tela, com o último depoimento legível, antes de o coração começar a subir */
+  html.anima .pv-fim-wrap{height:calc(135svh + max(100svh,560px))}
+  html.anima .pv-fim{position:sticky;top:0;height:100svh;min-height:0}
+  .menu .corpo{grid-template-columns:1fr}
+  .menu .previa{display:none}
+}
+@media (max-width:720px){
+  .heroi{--hs:56svh}
+  .banco{width:190vw;top:36svh}
+  .banco.esq{left:-72vw}
+  .banco.dir{right:-72vw}
+  .heroi-txt{top:clamp(118px,18svh,170px)}
+  .role{display:none}
+  .topo .btn-reserva{display:none}
+  .topo-acoes{margin-top:12px}
+  .selo{width:64px;margin-left:-4px}
+  .barra{display:block;position:fixed;z-index:60;left:0;right:0;bottom:0;padding:10px 16px calc(env(safe-area-inset-bottom,0px) + 14px);transform:translateY(130%);transition:transform .6s var(--ease)}
+  .barra.on{transform:none}
+  .barra .btn-reserva{width:100%;box-shadow:0 10px 30px rgba(40,18,10,.28)}
+  .menu ol .ir{grid-template-columns:1fr}
+  .menu ol .b{margin-top:-4px}
+  .fim{padding-bottom:22px}
+  /* rodapé no celular: Instagram e Voltar ao topo na primeira linha, Cubs na segunda, cidade e ano na terceira, crédito na última */
+  .fim .rodape{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:16px;row-gap:0;align-items:center}
+  .fim .rodape > *{min-height:44px;display:flex;align-items:center}
+  .fim .rodape > :nth-child(1){grid-column:1;grid-row:1}
+  .fim .rodape > :nth-child(6){grid-column:2;grid-row:1;justify-self:end}
+  .fim .rodape > :nth-child(2){grid-column:1 / -1;grid-row:2}
+  .fim .rodape > :nth-child(3){grid-column:1;grid-row:3}
+  .fim .rodape > :nth-child(4){grid-column:2;grid-row:3;justify-self:end}
+  .fim .rodape > :nth-child(5){grid-column:1 / -1;grid-row:4}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none !important;animation:none !important}
+  /* sem movimento, a chegada já mostra a ilha embaixo do título (a câmera não desce) */
+  .cena{transform:translateY(calc(-1 * var(--hs) + 44svh))}
+  .banco{display:none}
+}
+/* no toque, os links do rodapé têm a altura mínima de um dedo */
+@media (pointer:coarse){
+  .fim .rodape a,.fim .rodape button{min-height:44px}
+}
+/* sem JavaScript: as unidades numa lista simples, com o endereço e o link de reserva */
+.sem-js{list-style:none;margin:0;padding:0;display:grid;gap:40px}
+.sem-js h3{font-family:var(--display);font-size:clamp(2rem,4vw,3.4rem);line-height:1;margin:0}
+.sem-js h3 span{display:block;font-weight:300}
+.sem-js p{margin:10px 0 0;max-width:46ch}
+.sem-js-reserva{margin-top:40px}
+
