@@ -15,7 +15,7 @@ Site de uma página da Âncora Ilhabela, pronto para publicar. Não precisa inst
 | `favicon.ico`, `icon.svg`, `apple-touch-icon.png`, `icons/`, `manifest.webmanifest` | Ícones da aba do navegador e da tela inicial do celular |
 | `404.html` | Página de endereço não encontrado |
 | `robots.txt`, `sitemap.xml` | Orientação para o Google |
-| `vercel.json` | Proteções de segurança e cache na Vercel |
+| `vercel.json` | Proteções de segurança na Vercel |
 | `_headers` | As mesmas proteções, caso o site vá para a Cloudflare Pages ou a Netlify |
 
 ## Antes de começar: o plano da Vercel
@@ -50,9 +50,9 @@ Abra o arquivo no GitHub, clique no lápis (Edit this file), faça a alteração
 - **Unidades** (nome, bairro, frase, fotos e descrição de cada foto): `UNIDADES`, em `js/ancora.js`. **Endereço e tempos** (praia, mercado, balsa): `LOCAIS`, logo abaixo. O desenho do mapa de cada unidade vem de dados prontos do OpenStreetMap: se o endereço mudar, o mapa precisa ser refeito.
   - Nome e endereço das unidades também aparecem no `index.html`, na lista para quem navega sem JavaScript e nos dados para o Google (`application/ld+json`). Se mudar um nome ou um endereço, troque lá também.
 - **Textos das seções:** `index.html`.
-- **Fotos:** pasta `img/`. Para trocar uma foto, envie o arquivo novo em WebP com o mesmo nome. Quem já visitou o site pode ver a foto anterior por até um dia.
+- **Fotos:** pasta `img/`. Para trocar uma foto, envie o arquivo novo em WebP com o mesmo nome; ele aparece no site logo depois da publicação.
 - **Cores:** no `:root`, no início de `css/ancora.css`.
-- Não precisa mexer no `?v=` que aparece nos endereços do CSS e do JavaScript.
+- Não precisa mexer no `?v=` que aparece no fim dos endereços dos arquivos.
 
 ## Fontes
 
